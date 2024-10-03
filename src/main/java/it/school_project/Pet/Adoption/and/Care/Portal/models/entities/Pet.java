@@ -1,4 +1,4 @@
-package it.school_project.Pet.Adoption.and.Care.Portal.entities;
+package it.school_project.Pet.Adoption.and.Care.Portal.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

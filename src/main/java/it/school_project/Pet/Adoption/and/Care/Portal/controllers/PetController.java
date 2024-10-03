@@ -1,6 +1,6 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.controllers;
 
-import it.school_project.Pet.Adoption.and.Care.Portal.dtos.PetDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.PetDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.services.PetServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

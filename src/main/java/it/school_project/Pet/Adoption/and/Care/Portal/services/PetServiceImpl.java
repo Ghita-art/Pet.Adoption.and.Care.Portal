@@ -1,8 +1,8 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import it.school_project.Pet.Adoption.and.Care.Portal.dtos.PetDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.entities.Pet;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.PetDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.PetRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

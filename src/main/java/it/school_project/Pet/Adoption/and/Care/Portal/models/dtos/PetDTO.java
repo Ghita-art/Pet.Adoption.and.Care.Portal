@@ -1,6 +1,5 @@
-package it.school_project.Pet.Adoption.and.Care.Portal.dtos;
+package it.school_project.Pet.Adoption.and.Care.Portal.models.dtos;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
