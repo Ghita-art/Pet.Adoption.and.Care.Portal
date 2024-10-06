@@ -15,11 +15,17 @@ public class Pet {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "breed")
+    private String breed;
+
     @Column(name = "type")
     private String type;
 
     @Column(name = "age")
     private Integer age;
+
+    @Column(name = "country")
+    private String country;
 
     @Column(name = "city")
     private String city;

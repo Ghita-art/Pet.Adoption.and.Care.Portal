@@ -7,6 +7,8 @@ import it.school_project.Pet.Adoption.and.Care.Portal.repositories.PetRepository
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class PetServiceImpl implements PetServices {
@@ -25,8 +27,22 @@ public class PetServiceImpl implements PetServices {
         Pet petEntity = objectMapper.convertValue(petDTO, Pet.class);
         Pet petEntityResponse = petRepository.save(petEntity);
         log.info("Pet with id {} was saved", petEntityResponse.getId());
-
-
         return objectMapper.convertValue(petEntityResponse, PetDTO.class);
     }
+
+    @Override
+    public Optional<Pet> getPetById(Long id) {
+        return petRepository.findById(id);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
