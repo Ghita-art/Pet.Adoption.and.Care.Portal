@@ -20,4 +20,6 @@ public class PetDTO {
     private String city;
 
     private String status;
+
+    private String health_status;
 }

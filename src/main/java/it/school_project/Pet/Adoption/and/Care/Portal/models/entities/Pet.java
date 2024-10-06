@@ -32,4 +32,7 @@ public class Pet {
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "health_status")
+    private String health_status;
 }

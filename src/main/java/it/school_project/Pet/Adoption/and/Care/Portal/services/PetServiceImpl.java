@@ -34,6 +34,33 @@ public class PetServiceImpl implements PetServices {
     public Optional<Pet> getPetById(Long id) {
         return petRepository.findById(id);
     }
+
+    @Override
+    public Optional<PetDTO> updatePet(Long id, PetDTO petDTO) {
+        return petRepository.findById(id).map(existingPet -> {
+            existingPet.setId(petDTO.getId());
+            existingPet.setName(petDTO.getName());
+            existingPet.setAge(petDTO.getAge());
+            existingPet.setBreed(petDTO.getBreed());
+            existingPet.setType(petDTO.getType());
+            existingPet.setStatus(petDTO.getStatus());
+            existingPet.setCountry(petDTO.getCountry());
+            existingPet.setCity(petDTO.getCity());
+
+            Pet updatePet = petRepository.save(existingPet);
+            return objectMapper.convertValue(updatePet, PetDTO.class);
+        });
+    }
+
+    @Override
+    public boolean deletePet(Long id) {
+        if (petRepository.existsById(id)) {
+            petRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 
