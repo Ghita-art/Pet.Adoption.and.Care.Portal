@@ -13,11 +13,11 @@ public class Owner {
     private Long id;
 
     @NotNull(message = "The first name is required")
-    @Column(name = "first_Name")
+    @Column(name = "first_name")
     private String firstName;
 
     @NotNull(message = "The last name is required")
-    @Column(name = "last_Name")
+    @Column(name = "last_name")
     private String lastName;
 
     @NotNull(message = "The address is required")
