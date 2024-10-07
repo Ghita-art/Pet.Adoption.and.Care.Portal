@@ -13,6 +13,8 @@ public class PetDTO {
 
     private String type;
 
+    private String gender;
+
     private Integer age;
 
     private String country;

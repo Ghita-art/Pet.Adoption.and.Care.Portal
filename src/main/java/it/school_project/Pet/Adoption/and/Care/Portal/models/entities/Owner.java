@@ -12,15 +12,15 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "First name is required")
+    @NotNull(message = "The first name is required")
     @Column(name = "first_name")
     private String firstName;
 
-    @NotNull(message = "Last name is required")
+    @NotNull(message = "The last name is required")
     @Column(name = "last_name")
     private String lastName;
 
-    @NotNull(message = "Address is required")
+    @NotNull(message = "The address is required")
     @Column(name = "address")
     private String address;
 
