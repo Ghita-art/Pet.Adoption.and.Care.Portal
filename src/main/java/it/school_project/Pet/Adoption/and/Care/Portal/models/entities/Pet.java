@@ -7,7 +7,6 @@ import lombok.Data;
 @Entity
 @Table(name = "pets")
 public class Pet {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
