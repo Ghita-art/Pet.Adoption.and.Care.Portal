@@ -19,12 +19,32 @@ public class OwnerController {
     public OwnerController(OwnerService ownerService) {
         this.ownerService = ownerService;
     }
+
     @PostMapping("/api/owners")
-    public ResponseEntity<OwnerDTO> createOwner(@RequestBody OwnerDTO ownerDTO){
+    public ResponseEntity<OwnerDTO> createOwner(@RequestBody OwnerDTO ownerDTO) {
         return ResponseEntity.ok(ownerService.createOwner(ownerDTO));
     }
+
     @GetMapping("api/owners/{id}")
-    public ResponseEntity<Optional<Owner>> getOwnerById(@PathVariable Long id){
+    public ResponseEntity<Optional<Owner>> getOwnerById(@PathVariable Long id) {
         return ResponseEntity.ok(ownerService.getOwnerById(id));
+    }
+
+    @PutMapping("api/owners/{id}")
+    public ResponseEntity<OwnerDTO> updateOwner(@PathVariable Long id, @RequestBody OwnerDTO ownerDTO) {
+        log.info("Received OwnerDTO: {}", ownerDTO);
+        Optional<OwnerDTO> updatedOwner = ownerService.updateOwner(id, ownerDTO);
+        return updatedOwner.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("api/owners/{id}")
+    public ResponseEntity<Void> deleteOwner(@PathVariable Long id) {
+        boolean isDeleted = ownerService.deleteOwner(id);
+        if (isDeleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

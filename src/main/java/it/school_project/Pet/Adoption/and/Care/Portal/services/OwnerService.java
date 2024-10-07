@@ -9,4 +9,8 @@ public interface OwnerService {
     OwnerDTO createOwner(OwnerDTO ownerDTO);
 
     Optional<Owner> getOwnerById(Long id);
+
+    Optional<OwnerDTO> updateOwner(Long id, OwnerDTO ownerDTO);
+
+    boolean deleteOwner(Long id);
 }

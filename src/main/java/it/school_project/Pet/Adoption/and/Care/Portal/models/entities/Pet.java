@@ -49,4 +49,8 @@ public class Pet {
     @NotNull(message = "The health_status is required")
     @Column(name = "health_status")
     private String health_status;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
 }
