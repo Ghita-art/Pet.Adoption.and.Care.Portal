@@ -4,7 +4,9 @@ import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.PetDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import it.school_project.Pet.Adoption.and.Care.Portal.services.PetServices;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
