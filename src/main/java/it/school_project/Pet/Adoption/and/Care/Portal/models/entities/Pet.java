@@ -47,8 +47,8 @@ public class Pet {
     private String status;
 
     @NotNull(message = "The health_status is required")
-    @Column(name = "health_status")
-    private String health_status;
+    @Column(name = "healthStatus")
+    private String healthStatus;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")

@@ -1,21 +1,16 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.controllers;
 
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.OwnerDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
 import it.school_project.Pet.Adoption.and.Care.Portal.services.OwnerService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @Slf4j
 @RestController
 public class OwnerController {
     private final OwnerService ownerService;
 
-    @Autowired
     public OwnerController(OwnerService ownerService) {
         this.ownerService = ownerService;
     }
@@ -26,25 +21,19 @@ public class OwnerController {
     }
 
     @GetMapping("api/owners/{id}")
-    public ResponseEntity<Optional<Owner>> getOwnerById(@PathVariable Long id) {
+    public ResponseEntity<OwnerDTO> getOwnerById(@PathVariable Long id) {
         return ResponseEntity.ok(ownerService.getOwnerById(id));
     }
 
     @PutMapping("api/owners/{id}")
-    public ResponseEntity<OwnerDTO> updateOwner(@PathVariable Long id, @RequestBody OwnerDTO ownerDTO) {
-        log.info("Received OwnerDTO: {}", ownerDTO);
-        Optional<OwnerDTO> updatedOwner = ownerService.updateOwner(id, ownerDTO);
-        return updatedOwner.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<String> updateOwnerById(@PathVariable Long id, @RequestBody OwnerDTO ownerDTO) {
+        OwnerDTO updateOwnerById = ownerService.updateOwnerById(id, ownerDTO);
+        return ResponseEntity.ok("Updated owner");
     }
 
     @DeleteMapping("api/owners/{id}")
-    public ResponseEntity<Void> deleteOwner(@PathVariable Long id) {
-        boolean isDeleted = ownerService.deleteOwner(id);
-        if (isDeleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<String> deleteOwnerById(@PathVariable Long id) {
+        ownerService.deleteOwnerById(id);
+        return ResponseEntity.ok("Owner deleted");
     }
 }
