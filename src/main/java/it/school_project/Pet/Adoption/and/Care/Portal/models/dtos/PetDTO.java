@@ -1,9 +1,6 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.models.dtos;
 
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -33,6 +30,7 @@ public class PetDTO {
     @NotNull(message = "The city is required")
     private String city;
 
+    @Column(name = "status")
     @NotNull(message = "The status is required")
     private String status;
 

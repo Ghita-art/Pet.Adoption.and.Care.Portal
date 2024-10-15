@@ -37,7 +37,7 @@ public class GlobalExtensionHandler {
 
         } catch (JsonProcessingException e) {
             log.error("Error processing response to string");
+            return "Internal error";
         }
-        return "Internal error";
     }
 }
