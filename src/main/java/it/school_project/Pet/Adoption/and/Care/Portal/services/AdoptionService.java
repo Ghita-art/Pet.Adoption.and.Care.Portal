@@ -10,7 +10,7 @@ import java.util.List;
 public interface AdoptionService {
     ResponseAdoptionDTO createAdoption(RequestAdoptionDTO requestAdoptionDTO);
 
-    ResponseAdoptionDTO updateAdoption(Long id,Owner owner);
+    ResponseAdoptionDTO updateAdoption(Long adoptionId,Owner owner);
 
     List<ResponseAdoptionDTO> getAdoptions(Owner owner, String status, Long id);
 
