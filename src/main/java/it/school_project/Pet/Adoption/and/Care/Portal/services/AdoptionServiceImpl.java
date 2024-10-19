@@ -1,15 +1,18 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.AdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Adoption;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.AdoptionRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -43,4 +46,26 @@ public class AdoptionServiceImpl implements AdoptionService {
     public List<ResponseAdoptionDTO> getAdoptions(Owner owner, String status, Long id) {
         return List.of();
     }
+
+    @Override
+    public List<ResponseAdoptionDTO> searchAdoptions(String ownerName, String status, LocalDate adoptionDate, Pet pet) {
+        Specification<Adoption> spec = Specification
+                .where(AdoptionSpecification.ownerContains(ownerName))
+                .and(AdoptionSpecification.adoptionDateIs(adoptionDate))
+                .and(AdoptionSpecification.petIs(pet))
+                .and(AdoptionSpecification.statusIs(status));
+
+        List<Adoption> adoptions= adoptionRepository.findAll(spec);
+        log.info("{} adoptions found", adoptions.size());
+
+        return adoptions.stream()
+                .map(adoption -> objectMapper.convertValue(adoption, ResponseAdoptionDTO.class))
+                .toList();
+
+    }
 }
+
+
+
+
+
