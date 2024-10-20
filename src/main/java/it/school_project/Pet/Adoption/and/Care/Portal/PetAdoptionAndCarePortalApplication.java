@@ -13,6 +13,5 @@ public class PetAdoptionAndCarePortalApplication {
     public static void main(String[] args) {
         SpringApplication.run(PetAdoptionAndCarePortalApplication.class, args);
     }
-
-    }
+}
 

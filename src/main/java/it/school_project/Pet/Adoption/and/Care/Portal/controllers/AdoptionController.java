@@ -1,5 +1,6 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.controllers;
 
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.AdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
@@ -31,8 +32,14 @@ public class AdoptionController {
     public ResponseEntity<ResponseAdoptionDTO> createAdoption(@RequestBody RequestAdoptionDTO requestAdoptionDTO) {
         return ResponseEntity.ok(adoptionService.createAdoption(requestAdoptionDTO));
     }
+
     @PatchMapping("/{id}")
-    public ResponseEntity<ResponseAdoptionDTO> updateAdoption(@PathVariable Long id,@RequestBody RequestAdoptionDTO requestAdoptionDTO){
+    public ResponseEntity<ResponseAdoptionDTO> updateAdoption(@PathVariable Long id, @RequestBody RequestAdoptionDTO requestAdoptionDTO) {
         return ResponseEntity.ok(adoptionService.updateAdoption(id, requestAdoptionDTO.getOwner()));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AdoptionDTO> getAdoptionById(@PathVariable Long id) {
+        return ResponseEntity.ok(adoptionService.getAdoptionById(id));
     }
 }

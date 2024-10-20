@@ -1,18 +1,17 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.AdoptionNotFoundException;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.AdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Adoption;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.AdoptionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -48,11 +47,9 @@ public class AdoptionServiceImpl implements AdoptionService {
     }
 
     @Override
-    public List<ResponseAdoptionDTO> searchAdoptions(String ownerName, String status, LocalDate adoptionDate, Pet pet) {
+    public List<ResponseAdoptionDTO> getAdoptions(String ownerName, String status) {
         Specification<Adoption> spec = Specification
                 .where(AdoptionSpecification.ownerContains(ownerName))
-                .and(AdoptionSpecification.adoptionDateIs(adoptionDate))
-                .and(AdoptionSpecification.petIs(pet))
                 .and(AdoptionSpecification.statusIs(status));
 
         List<Adoption> adoptions= adoptionRepository.findAll(spec);
@@ -61,6 +58,14 @@ public class AdoptionServiceImpl implements AdoptionService {
         return adoptions.stream()
                 .map(adoption -> objectMapper.convertValue(adoption, ResponseAdoptionDTO.class))
                 .toList();
+
+    }
+
+    @Override
+    public AdoptionDTO getAdoptionById(Long id) {
+        return adoptionRepository.findById(id)
+                .map(adoption -> objectMapper.convertValue(adoption,AdoptionDTO.class))
+                .orElseThrow(() -> new AdoptionNotFoundException("Adoption with the ID"+ id+"not found"));
 
     }
 }

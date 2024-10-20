@@ -13,10 +13,12 @@ import java.util.List;
 public interface AdoptionService {
     ResponseAdoptionDTO createAdoption(RequestAdoptionDTO requestAdoptionDTO);
 
-    ResponseAdoptionDTO updateAdoption(Long adoptionId,Owner owner);
+    ResponseAdoptionDTO updateAdoption(Long adoptionId, Owner owner);
 
     List<ResponseAdoptionDTO> getAdoptions(Owner owner, String status, Long id);
 
-    List<ResponseAdoptionDTO> searchAdoptions(String ownerName, String status, LocalDate adoptionDate, Pet pet);
 
+    List<ResponseAdoptionDTO> getAdoptions(String ownerName, String status);
+
+    AdoptionDTO getAdoptionById(Long id);
 }
