@@ -3,22 +3,17 @@ package it.school_project.Pet.Adoption.and.Care.Portal.services;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.AdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdoptionDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Adoption;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface AdoptionService {
     ResponseAdoptionDTO createAdoption(RequestAdoptionDTO requestAdoptionDTO);
 
-    ResponseAdoptionDTO updateAdoption(Long adoptionId, Owner owner);
+    ResponseAdoptionDTO updateAdoption(Long adoptionId, AdoptionDTO adoptionDTO);
 
-    List<ResponseAdoptionDTO> getAdoptions(Owner owner, String status, Long id);
-
-
-    List<ResponseAdoptionDTO> getAdoptions(String ownerName, String status);
+    List<ResponseAdoptionDTO> getAdoptions(String ownerName, String status, Long id);
 
     AdoptionDTO getAdoptionById(Long id);
+
+    void deleteAdoptionById(Long id);
 }

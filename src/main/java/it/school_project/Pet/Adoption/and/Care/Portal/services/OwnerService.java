@@ -1,13 +1,15 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.services;
 
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.OwnerDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestOwnerDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseOwnerDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface OwnerService {
-    OwnerDTO createOwner(OwnerDTO ownerDTO);
+
+
+    ResponseOwnerDTO createOwner(RequestOwnerDTO requestOwnerDTO);
 
     OwnerDTO getOwnerById(Long id);
 
@@ -15,5 +17,7 @@ public interface OwnerService {
 
     void deleteOwnerById(Long id);
 
-    List <OwnerDTO> getOwners();
+    List<OwnerDTO> getOwners();
+
+    List<ResponseOwnerDTO> getFilteredOwners(String firstName, String lastName, String phoneNumber, String email);
 }

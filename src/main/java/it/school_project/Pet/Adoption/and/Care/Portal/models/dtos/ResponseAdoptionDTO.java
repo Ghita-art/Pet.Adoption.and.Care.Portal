@@ -5,6 +5,7 @@ import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import lombok.Data;
 
 import java.time.LocalDate;
+
 @Data
 public class ResponseAdoptionDTO {
 

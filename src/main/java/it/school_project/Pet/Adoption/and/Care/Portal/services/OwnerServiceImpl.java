@@ -1,15 +1,18 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.OwnerDuplicateEmailException;
 import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.OwnerNotFoundException;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.OwnerDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestOwnerDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseOwnerDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.OwnerRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -25,12 +28,14 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public OwnerDTO createOwner(OwnerDTO ownerDTO) {
-        Owner ownerEntity = objectMapper.convertValue(ownerDTO, Owner.class);
+    public ResponseOwnerDTO createOwner(RequestOwnerDTO requestOwnerDTO) {
+        validateEmailAddress(requestOwnerDTO);
+
+        Owner ownerEntity = objectMapper.convertValue(requestOwnerDTO, Owner.class);
         Owner ownerEntityResponse = ownerRepository.save(ownerEntity);
         log.info("Owner with id {} was saved", ownerEntityResponse.getId());
 
-        return objectMapper.convertValue(ownerEntityResponse, OwnerDTO.class);
+        return objectMapper.convertValue(ownerEntityResponse, ResponseOwnerDTO.class);
     }
 
     @Override
@@ -48,6 +53,22 @@ public class OwnerServiceImpl implements OwnerService {
                 .map(owner -> objectMapper.convertValue(owner, OwnerDTO.class))
                 .toList();
 
+    }
+
+    @Override
+    public List<ResponseOwnerDTO> getFilteredOwners(String firstName, String lastName, String phoneNumber, String email) {
+        Specification<Owner> spec = Specification
+                .where(OwnerSpecification.firstNameContains(firstName))
+                .and(OwnerSpecification.lastNameContains(lastName))
+                .and(OwnerSpecification.phoneNumberContains(phoneNumber))
+                .and(OwnerSpecification.emailContains(email));
+
+        List<Owner> owners = ownerRepository.findAll(spec);
+        log.info("{} owners found", owners.size());
+
+        return owners.stream()
+                .map(owner -> objectMapper.convertValue(owner, ResponseOwnerDTO.class))
+                .toList();
     }
 
     @Override
@@ -72,7 +93,16 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public void deleteOwnerById(Long id) {
+        ownerRepository.findById(id).orElseThrow(() -> new OwnerNotFoundException("Owner with the id " + id + "not found"));
         ownerRepository.deleteById(id);
+        log.info("Owner with the id {} was deleted", id);
+    }
+
+    private void validateEmailAddress(RequestOwnerDTO requestOwnerDTO) {
+        Owner owner = ownerRepository.findByEmail(requestOwnerDTO.getEmail());
+        if (owner != null) {
+            throw new OwnerDuplicateEmailException("The email address already exists");
+        }
     }
 }
 

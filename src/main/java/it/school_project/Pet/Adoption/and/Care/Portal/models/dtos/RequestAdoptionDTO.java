@@ -9,9 +9,9 @@ import java.time.LocalDate;
 @Data
 public class RequestAdoptionDTO {
 
-    private Owner owner;
+    private Long ownerId;
 
-    private Pet pet;
+    private Long petId;
 
     private LocalDate adoptionDate;
 

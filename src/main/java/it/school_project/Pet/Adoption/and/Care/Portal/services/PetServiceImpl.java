@@ -71,7 +71,9 @@ public class PetServiceImpl implements PetServices {
 
     @Override
     public void deletePetById(Long id) {
+        petRepository.findById(id).orElseThrow(() -> new PetNotFoundException("Pet wit the id" + id + "not found"));
         petRepository.deleteById(id);
+        log.info("Pet with the id {} was deleted", id);
     }
 }
 

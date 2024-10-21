@@ -30,7 +30,7 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<String> petCreateException(PetCreateException petCreateException) {
         return new ResponseEntity<>(objectToString(Map.of("message", petCreateException.getMessage())), BAD_REQUEST);
     }
-    @ExceptionHandler(PetNotFoundException.class)
+    @ExceptionHandler(AdoptionNotFoundException.class)
     public ResponseEntity<String> adoptionCreateException(AdoptionNotFoundException adoptionNotFoundException){
         return new ResponseEntity<>(objectToString(Map.of("message", adoptionNotFoundException.getMessage())),NOT_FOUND);
     }
