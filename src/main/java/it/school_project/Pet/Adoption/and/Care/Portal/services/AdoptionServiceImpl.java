@@ -49,21 +49,6 @@ public class AdoptionServiceImpl implements AdoptionService {
     }
 
     @Override
-    public List<ResponseAdoptionDTO> getAdoptions(String ownerName, String status, Long id) {
-        Specification<Adoption> spec = Specification
-                .where(AdoptionSpecification.ownerContains(ownerName))
-                .and(AdoptionSpecification.statusIs(status));
-
-        List<Adoption> adoptions = adoptionRepository.findAll(spec);
-        log.info("{} adoptions found", adoptions.size());
-
-        return adoptions.stream()
-                .map(adoption -> objectMapper.convertValue(adoption, ResponseAdoptionDTO.class))
-                .toList();
-
-    }
-
-    @Override
     public AdoptionDTO getAdoptionById(Long id) {
         return adoptionRepository.findById(id)
                 .map(adoption -> objectMapper.convertValue(adoption, AdoptionDTO.class))
