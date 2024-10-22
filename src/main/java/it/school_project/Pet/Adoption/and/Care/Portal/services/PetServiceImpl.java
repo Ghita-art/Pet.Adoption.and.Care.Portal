@@ -3,6 +3,8 @@ package it.school_project.Pet.Adoption.and.Care.Portal.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.PetNotFoundException;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.PetDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestPetDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponsePetDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.PetRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +26,12 @@ public class PetServiceImpl implements PetServices {
     }
 
     @Override
-    public PetDTO createPet(PetDTO petDTO) {
-        Pet petEntity = objectMapper.convertValue(petDTO, Pet.class);
+    public ResponsePetDTO createPet(RequestPetDTO requestPetDTO) {
+        Pet petEntity = objectMapper.convertValue(requestPetDTO, Pet.class);
         Pet petEntityResponse = petRepository.save(petEntity);
         log.info("Pet with id {} was saved", petEntityResponse.getId());
 
-        return objectMapper.convertValue(petEntityResponse, PetDTO.class);
+        return objectMapper.convertValue(petEntityResponse, ResponsePetDTO.class);
     }
 
     @Override

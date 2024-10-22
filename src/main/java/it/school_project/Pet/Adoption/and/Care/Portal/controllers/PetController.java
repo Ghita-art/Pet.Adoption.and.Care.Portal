@@ -1,7 +1,11 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.PetDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestPetDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponsePetDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.services.PetServices;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +19,10 @@ public class PetController {
         this.petServices = petServices;
     }
 
+    @Operation(summary = "Create a new pet")
     @PostMapping("/api/pets")
-    public ResponseEntity<PetDTO> createPet(@RequestBody PetDTO petDTO) {
-        return ResponseEntity.ok(petServices.createPet(petDTO));
+    public ResponseEntity<ResponsePetDTO> createPet(@Valid @RequestBody RequestPetDTO requestPetDTO) {
+        return ResponseEntity.ok(petServices.createPet(requestPetDTO));
     }
 
     @GetMapping("api/pets/{id}")

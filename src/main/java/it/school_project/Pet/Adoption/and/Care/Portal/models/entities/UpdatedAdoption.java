@@ -5,29 +5,24 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @Data
 @Entity
-@Table(name = "adoptions")
-public class Adoption {
+@Table(name = "updated_adoptions")
+public class UpdatedAdoption {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "The owner is required")
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false)
     private Owner owner;
 
+    @NotNull(message = "The pet is required")
     @ManyToOne
-    @JoinColumn(name = "pet_id")
+    @JoinColumn(name = "pet_id", referencedColumnName = "id", nullable = false)
     private Pet pet;
 
-    @NotNull(message = "The adoption date is required")
-    @Column(name = "adoption_date")
-    private LocalDate adoptionDate;
-
     @NotBlank(message = "The status is required")
-    @Column(name = "status")
     private String status;
 }
