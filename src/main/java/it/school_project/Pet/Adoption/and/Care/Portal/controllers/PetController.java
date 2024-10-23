@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
+@RequestMapping("/api/pets")
 public class PetController {
     private final PetServices petServices;
 
@@ -20,27 +21,26 @@ public class PetController {
     }
 
     @Operation(summary = "Create a new pet")
-    @PostMapping("/api/pets")
+    @PostMapping
     public ResponseEntity<ResponsePetDTO> createPet(@Valid @RequestBody RequestPetDTO requestPetDTO) {
         return ResponseEntity.ok(petServices.createPet(requestPetDTO));
     }
 
-    @GetMapping("api/pets/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<PetDTO> getPetById(@PathVariable Long id) {
         return ResponseEntity.ok(petServices.getPetById(id));
     }
 
-    @PutMapping("api/pets/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<String> updatePetById(@PathVariable Long id, @RequestBody PetDTO petDTO) {
         PetDTO updatedPetById = petServices.updatePetById(id, petDTO);
         return ResponseEntity.ok("Updated pet");
     }
 
-    @DeleteMapping("api/pets/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> deletePetById(@PathVariable Long id) {
         petServices.deletePetById(id);
         return ResponseEntity.ok("Pet deleted");
-
     }
 }
 

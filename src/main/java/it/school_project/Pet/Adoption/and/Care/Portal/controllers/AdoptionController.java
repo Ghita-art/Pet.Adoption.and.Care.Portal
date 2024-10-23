@@ -7,8 +7,6 @@ import it.school_project.Pet.Adoption.and.Care.Portal.services.AdoptionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RequestMapping("/api/adoptions")
 @RestController
 public class AdoptionController {
@@ -26,8 +24,8 @@ public class AdoptionController {
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateAdoptionById(@PathVariable Long id, @RequestBody AdoptionDTO adoptionDTO) {
-    ResponseAdoptionDTO updateAdoptionById = adoptionService.updateAdoption(id,adoptionDTO);
-    return ResponseEntity.ok("Updated adoption");
+        ResponseAdoptionDTO updateAdoptionById = adoptionService.updateAdoption(id, adoptionDTO);
+        return ResponseEntity.ok("Updated adoption");
     }
 
     @GetMapping("/{id}")
@@ -35,7 +33,7 @@ public class AdoptionController {
         return ResponseEntity.ok(adoptionService.getAdoptionById(id));
     }
 
-    @DeleteMapping("/api/adoptions/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteAdoptionById(@PathVariable Long id) {
         adoptionService.deleteAdoptionById(id);
         return ResponseEntity.noContent().build();

@@ -6,7 +6,6 @@ import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponsePetDTO
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.PetRepository;
 import it.school_project.Pet.Adoption.and.Care.Portal.services.PetServiceImpl;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-
 public class PetServiceImplTest {
     @Mock
     private ObjectMapper objectMapper;
@@ -27,10 +25,6 @@ public class PetServiceImplTest {
 
     @InjectMocks
     private PetServiceImpl petService;
-
-    @AfterAll
-    public static void test() {
-    }
 
     @Test
     void testCreatePet() {

@@ -3,16 +3,11 @@ package it.school_project.Pet.Adoption.and.Care.Portal.unit_test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdoptionDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseOwnerDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponsePetDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Adoption;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.AdoptionRepository;
-import it.school_project.Pet.Adoption.and.Care.Portal.services.AdoptionService;
 import it.school_project.Pet.Adoption.and.Care.Portal.services.AdoptionServiceImpl;
-import jakarta.validation.constraints.NotNull;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,7 +22,6 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-
 public class AdoptionServiceImplTest {
     @Mock
     private ObjectMapper objectMapper;
@@ -37,10 +31,6 @@ public class AdoptionServiceImplTest {
 
     @InjectMocks
     private AdoptionServiceImpl adoptionService;
-
-    @AfterAll
-    public static void test() {
-    }
 
     @Test
     void testCreateAdoption() {

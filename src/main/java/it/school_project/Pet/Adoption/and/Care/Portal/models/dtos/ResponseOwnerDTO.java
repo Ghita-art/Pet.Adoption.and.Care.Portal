@@ -1,6 +1,5 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.models.dtos;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data

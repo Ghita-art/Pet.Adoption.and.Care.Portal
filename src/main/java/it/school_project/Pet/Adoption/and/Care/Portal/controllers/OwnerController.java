@@ -6,7 +6,6 @@ import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestOwnerDT
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseOwnerDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.services.OwnerService;
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +26,7 @@ public class OwnerController {
         return ResponseEntity.ok(ownerService.createOwner(requestOwnerDTO));
     }
 
-    @GetMapping("api/owners/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<OwnerDTO> getOwnerById(@PathVariable Long id) {
         return ResponseEntity.ok(ownerService.getOwnerById(id));
     }
@@ -39,16 +38,17 @@ public class OwnerController {
             @RequestParam(value = "last_name", required = false) String last_name,
             @RequestParam(value = "phone_number", required = false) String phone_number,
             @RequestParam(value = "email", required = false) String email) {
+
         return ResponseEntity.ok(ownerService.getFilteredOwners(first_name, last_name, phone_number, email));
     }
 
-    @PutMapping("api/owners/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<String> updateOwnerById(@PathVariable Long id, @RequestBody OwnerDTO ownerDTO) {
         OwnerDTO updateOwnerById = ownerService.updateOwnerById(id, ownerDTO);
         return ResponseEntity.ok("Updated owner");
     }
 
-    @DeleteMapping("api/owners/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> deleteOwnerById(@PathVariable Long id) {
         ownerService.deleteOwnerById(id);
         return ResponseEntity.ok("Owner deleted");

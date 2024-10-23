@@ -9,11 +9,7 @@ import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdopti
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Adoption;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.AdoptionRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 
 @Slf4j
 @Service

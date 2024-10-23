@@ -1,7 +1,5 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.models.dtos;
 
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
