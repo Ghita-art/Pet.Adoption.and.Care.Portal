@@ -17,9 +17,9 @@ public class RequestAdoptionDTO {
     @NotNull(message = "The pet id is required")
     private Long petId;
 
-    @NotNull(message = "The adoption date is required")
-    @PastOrPresent(message = "The adoption date cannot be in the future")
-    private LocalDate adoptionDate;
+//    @NotNull(message = "The adoption date is required")
+//    @PastOrPresent(message = "The adoption date cannot be in the future")
+//    private LocalDate adoptionDate;
 
     @NotNull(message = "The status is required")
     @Pattern(regexp = "Pending|Completed|Rejected", message = "Invalid status value")

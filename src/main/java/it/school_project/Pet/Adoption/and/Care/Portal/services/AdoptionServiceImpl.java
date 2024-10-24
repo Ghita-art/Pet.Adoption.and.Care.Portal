@@ -3,30 +3,46 @@ package it.school_project.Pet.Adoption.and.Care.Portal.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.AdoptionDeleteException;
 import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.AdoptionNotFoundException;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.AdoptionDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestAdoptionDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdoptionDTO;
+import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.OwnerNotFoundException;
+import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.PetNotFoundException;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.*;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Adoption;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
+import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Pet;
 import it.school_project.Pet.Adoption.and.Care.Portal.repositories.AdoptionRepository;
+import it.school_project.Pet.Adoption.and.Care.Portal.repositories.OwnerRepository;
+import it.school_project.Pet.Adoption.and.Care.Portal.repositories.PetRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Slf4j
 @Service
 public class AdoptionServiceImpl implements AdoptionService {
 
     private final ObjectMapper objectMapper;
-
     private final AdoptionRepository adoptionRepository;
+    private final OwnerRepository ownerRepository;
+    private final PetRepository petRepository;
 
-    public AdoptionServiceImpl(ObjectMapper objectMapper, AdoptionRepository adoptionRepository) {
+    public AdoptionServiceImpl(ObjectMapper objectMapper, AdoptionRepository adoptionRepository, OwnerRepository ownerRepository, PetRepository petRepository) {
         this.objectMapper = objectMapper;
         this.adoptionRepository = adoptionRepository;
+        this.ownerRepository = ownerRepository;
+        this.petRepository = petRepository;
     }
 
     @Override
     public ResponseAdoptionDTO createAdoption(RequestAdoptionDTO requestAdoptionDTO) {
-        Adoption adoptionEntity = objectMapper.convertValue(requestAdoptionDTO, Adoption.class);
+        Owner owner = ownerRepository.findById(requestAdoptionDTO.getOwnerId()).orElseThrow(() -> new OwnerNotFoundException("Owner with the id" + requestAdoptionDTO.getOwnerId() + "not found"));
+        Pet pet = petRepository.findById(requestAdoptionDTO.getPetId()).orElseThrow(() -> new PetNotFoundException("Pet with the id" + requestAdoptionDTO.getPetId() + "not found"));
+
+        Adoption adoptionEntity = new Adoption();
+        adoptionEntity.setOwner(owner);
+        adoptionEntity.setPet(pet);
+        adoptionEntity.setAdoptionDate(LocalDate.now());
+
         Adoption adoptionEntityResponse = adoptionRepository.save(adoptionEntity);
         log.info("Adoption with the id {} was saved", adoptionEntityResponse.getId());
 
@@ -59,6 +75,7 @@ public class AdoptionServiceImpl implements AdoptionService {
         log.info("Adoption with the id {} was deleted", id);
     }
 }
+
 
 
 

@@ -16,11 +16,11 @@ public class Adoption {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Owner owner;
 
     @ManyToOne
-    @JoinColumn(name = "pet_id")
+    @JoinColumn(name = "pet_id", referencedColumnName = "id")
     private Pet pet;
 
     @NotNull(message = "The adoption date is required")
@@ -30,4 +30,7 @@ public class Adoption {
     @NotBlank(message = "The status is required")
     @Column(name = "status")
     private String status;
+
 }
+
+

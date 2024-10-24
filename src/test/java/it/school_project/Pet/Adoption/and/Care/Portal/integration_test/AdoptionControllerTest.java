@@ -38,7 +38,6 @@ public class AdoptionControllerTest {
         RequestAdoptionDTO requestAdoptionDTO = new RequestAdoptionDTO();
         requestAdoptionDTO.setOwnerId(1L);
         requestAdoptionDTO.setPetId(1L);
-        requestAdoptionDTO.setAdoptionDate(LocalDate.parse("2023-10-22"));
         requestAdoptionDTO.setStatus("test status");
 
         mockMvc.perform(post("/api/adoptions")

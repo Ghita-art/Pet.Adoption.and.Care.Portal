@@ -12,4 +12,5 @@ public interface AdoptionService {
     AdoptionDTO getAdoptionById(Long id);
 
     void deleteAdoptionById(Long id);
+
 }

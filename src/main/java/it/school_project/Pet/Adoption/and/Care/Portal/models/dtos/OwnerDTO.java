@@ -10,6 +10,9 @@ import lombok.Data;
 @Data
 public class OwnerDTO {
 
+    @NotNull(message = "The id is required")
+    private Long id;
+
     @NotNull(message = "First name is required")
     @Size(max = 50, message = "First name must be less than 50 characters")
     private String firstName;
@@ -29,5 +32,4 @@ public class OwnerDTO {
     @NotBlank(message = "This field is mandatory")
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Email should be valid")
     private String email;
-
 }
