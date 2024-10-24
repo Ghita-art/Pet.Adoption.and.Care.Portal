@@ -9,10 +9,16 @@ import lombok.Data;
 @Data
 public class RequestOwnerDTO {
 
+    @NotNull(message = "First name is required")
+    @Size(max = 50, message = "First name must be less than 50 characters")
     private String firstName;
 
+    @NotNull(message = "Last name is required")
+    @Size(max = 50, message = "Last name must be less than 50 characters")
     private String lastName;
 
+    @NotNull(message = "Address is required")
+    @Size(max = 100, message = "Address must be less than 100 characters")
     private String address;
 
     @NotNull(message = "Phone number is required")
