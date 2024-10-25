@@ -23,7 +23,7 @@ It ensures data validation, custom error handling, and a smooth API integration 
 - Validation: All DTOs have robust validation annotations to ensure data integrity.
 
 ## Project Structure
-src/main/java
+Pet-Adoption-and-Care-Portal
 ├── controllers
 │   ├── AdoptionController.java
 │   ├── OwnerController.java
@@ -38,11 +38,11 @@ src/main/java
 │   ├── dtos
 │   │   ├── AdoptionDTO.java
 │   │   ├── OwnerDTO.java
-│   │   └── PetDTO.java
-│   ├── entities
-│   │   ├── Adoption.java
-│   │   ├── Owner.java
-│   │   └── Pet.java
+│   │   ├── PetDTO.java
+│   └── entities
+│       ├── Adoption.java
+│       ├── Owner.java
+│       └── Pet.java
 ├── repositories
 │   ├── AdoptionRepository.java
 │   ├── OwnerRepository.java
