@@ -6,10 +6,14 @@ and maintain post-adoption care records.
 It ensures data validation, custom error handling, and a smooth API integration for both pet agencies and prospective pet owners.
 
 ## Tech Stack
-Java 17: Programming language. Spring Boot: Backend framework. Maven: Dependency management and project build tool.
-PostgreSQL: Primary database for data persistence. H2 in-memory database: Used for integration testing.
-MockMVC: For integration tests to simulate HTTP requests. JUnit: Unit testing framework.
-Mockito: Mocking framework for unit tests. Hibernate: ORM for managing database entities.
+- Java 17: Programming language. 
+- Spring Boot: Backend framework. 
+- Maven: Dependency management and project build tool.
+- PostgreSQL: Primary database for data persistence. 
+- H2 in-memory database: Used for integration testing.
+- MockMVC: For integration tests to simulate HTTP requests. 
+- JUnit: Unit testing framework.
+- Mockito: Mocking framework for unit tests. Hibernate: ORM for managing database entities.
 
 ## Features
 - Pet Management: Add, update, view, and delete pet information (e.g., breed, age, health status).
@@ -17,6 +21,37 @@ Mockito: Mocking framework for unit tests. Hibernate: ORM for managing database 
 - Adoption Management: Track the status of adoptions, link pets with owners, and record adoption dates.
 - Custom Error Handling: Implements custom exceptions to handle various error cases such as entity not found, duplicate data, and validation failures.
 - Validation: All DTOs have robust validation annotations to ensure data integrity.
+
+## Project Structure
+src/main/java
+├── controllers
+│   ├── AdoptionController.java
+│   ├── OwnerController.java
+│   └── PetController.java
+├── exceptions
+│   ├── AdoptionDeleteException.java
+│   ├── AdoptionNotFoundException.java
+│   ├── OwnerCreateException.java
+│   ├── PetDeleteException.java
+│   └── CustomExceptionHandler.java
+├── models
+│   ├── dtos
+│   │   ├── AdoptionDTO.java
+│   │   ├── OwnerDTO.java
+│   │   └── PetDTO.java
+│   ├── entities
+│   │   ├── Adoption.java
+│   │   ├── Owner.java
+│   │   └── Pet.java
+├── repositories
+│   ├── AdoptionRepository.java
+│   ├── OwnerRepository.java
+│   └── PetRepository.java
+├── services
+│   ├── AdoptionService.java
+│   ├── OwnerService.java
+│   └── PetService.java
+└── PetAdoptionAndCarePortalApplication.java
 
 ## API Endpoints
 You can interact with the application through the following REST API endpoints:
