@@ -24,35 +24,19 @@ It ensures data validation, custom error handling, and a smooth API integration 
 
 ## Project Structure
 Pet-Adoption-and-Care-Portal
-├── controllers
-│   ├── AdoptionController.java
-│   ├── OwnerController.java
-│   └── PetController.java
-├── exceptions
-│   ├── AdoptionDeleteException.java
-│   ├── AdoptionNotFoundException.java
-│   ├── OwnerCreateException.java
-│   ├── PetDeleteException.java
-│   └── CustomExceptionHandler.java
-├── models
-│   ├── dtos
-│   │   ├── AdoptionDTO.java
-│   │   ├── OwnerDTO.java
-│   │   ├── PetDTO.java
-│   └── entities
-│       ├── Adoption.java
-│       ├── Owner.java
-│       └── Pet.java
-├── repositories
-│   ├── AdoptionRepository.java
-│   ├── OwnerRepository.java
-│   └── PetRepository.java
-├── services
-│   ├── AdoptionService.java
-│   ├── OwnerService.java
-│   └── PetService.java
+├── controllers/ # REST Controllers
+├── exceptions/
+├── models/
+│   ├── dtos/
+│   └── entities/
+├── repositories/
+├── services/
 └── PetAdoptionAndCarePortalApplication.java
 
+src/test/java
+├── integration_test/
+├── unit_test/
+└── PetAdoptionAndCarePortalApplicationTests
 ## API Endpoints
 You can interact with the application through the following REST API endpoints:
 
