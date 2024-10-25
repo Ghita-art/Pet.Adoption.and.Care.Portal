@@ -52,8 +52,8 @@ public class AdoptionServiceImpl implements AdoptionService {
     @Override
     public ResponseAdoptionDTO updateAdoption(Long adoptionId, AdoptionDTO adoptionDTO) {
         Adoption existingAdoption = adoptionRepository.findById(adoptionId).orElseThrow(() -> new AdoptionNotFoundException("Adoption with the id" + adoptionId + "not found"));
-        existingAdoption.setOwner(adoptionDTO.getOwner());
-        existingAdoption.setPet(adoptionDTO.getPet());
+    //    existingAdoption.setOwner(adoptionDTO.getOwner());
+     //   existingAdoption.setPet(adoptionDTO.getPet());
         existingAdoption.setAdoptionDate(adoptionDTO.getAdoptionDate());
         existingAdoption.setStatus(adoptionDTO.getStatus());
         Adoption updatedAdoption = adoptionRepository.save(existingAdoption);

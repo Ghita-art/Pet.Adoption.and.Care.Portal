@@ -15,21 +15,21 @@ public class Adoption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id", referencedColumnName = "id")
-    private Owner owner;
+    @NotNull(message = "The adoption date is required")
+    @Column(name = "adoption_date")
+    private LocalDate adoptionDate;
+
+    @Column(name = "status")
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "pet_id", referencedColumnName = "id")
     private Pet pet;
 
-    @NotNull(message = "The adoption date is required")
-    @Column(name = "adoption_date")
-    private LocalDate adoptionDate;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    private Owner owner;
 
-    @NotBlank(message = "The status is required")
-    @Column(name = "status")
-    private String status;
 
 }
 

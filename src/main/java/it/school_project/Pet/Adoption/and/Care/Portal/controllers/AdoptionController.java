@@ -3,7 +3,6 @@ package it.school_project.Pet.Adoption.and.Care.Portal.controllers;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.AdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.RequestAdoptionDTO;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdoptionDTO;
-import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Adoption;
 import it.school_project.Pet.Adoption.and.Care.Portal.services.AdoptionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +34,8 @@ public class AdoptionController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteAdoptionById(@PathVariable Long id) {
+    public ResponseEntity<String> deleteAdoptionById(@PathVariable Long id) {
         adoptionService.deleteAdoptionById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Adoption deleted");
     }
 }

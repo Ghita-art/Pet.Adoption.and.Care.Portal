@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class PetDTO {
 
-    @NotNull(message = "The id is required")
     private Long id;
 
     @NotNull(message = "The pet name is required")

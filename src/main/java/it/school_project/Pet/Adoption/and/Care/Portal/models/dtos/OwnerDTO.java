@@ -10,7 +10,6 @@ import lombok.Data;
 @Data
 public class OwnerDTO {
 
-    @NotNull(message = "The id is required")
     private Long id;
 
     @NotNull(message = "First name is required")

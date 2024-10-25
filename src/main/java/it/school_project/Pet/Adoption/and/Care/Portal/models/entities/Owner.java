@@ -1,5 +1,6 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.models.entities;
 
+import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.PetDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -34,7 +35,7 @@ public class Owner {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+   @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Pet> pets;
 
 }

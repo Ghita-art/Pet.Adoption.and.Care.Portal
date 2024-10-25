@@ -9,7 +9,6 @@ import lombok.Data;
 @Data
 public class ResponseOwnerDTO {
 
-    @NotNull(message = "The id is required")
     private Long id;
 
     @NotNull(message = "First name is required")
