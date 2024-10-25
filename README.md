@@ -30,26 +30,26 @@ src/
 
 │   ├── java/it/school_project/PetAdoptionAndCarePortal
 
-│   │   ├── controllers/             # REST Controllers
+│   │   ├── controllers/                    # REST Controllers
 
-│   │   ├── exceptions/              # Exception handling
+│   │   ├── exceptions/                     # Exception handling
 
 │   │   ├── models/                  
 
-│   │   │   ├── dtos/                # DTOs
+│   │   │   ├── dtos/                       # DTOs
 
-│   │   │   └── entities/            # Entity classes
+│   │   │   └── entities/                   # Entity classes
 
-│   │   ├── repositories/            # Data Repositories
+│   │   ├── repositories/                   # Data Repositories
 
-│   │   └── services/                # Service implementations
+│   │   └── services/                       # Service implementations
 
 │   ├── resources/
-│   │   ├── application.properties   # Configuration
+│   │   ├── application.properties          # Configuration
 
-│   │   └── data.sql                 # Optional data script
+│   │   └── data.sql                        # Optional data script
 
-├── test/                            # Unit and integration tests
+├── test/                                   # Unit and integration tests
 ## API Endpoints
 You can interact with the application through the following REST API endpoints:
 
