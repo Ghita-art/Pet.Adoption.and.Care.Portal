@@ -26,17 +26,28 @@ It ensures data validation, custom error handling, and a smooth API integration 
 Pet-Adoption-and-Care-Portal
 src/
 ├── main/
+
 │   ├── java/it/school_project/PetAdoptionAndCarePortal
+
 │   │   ├── controllers/             # REST Controllers
+
 │   │   ├── exceptions/              # Exception handling
+
 │   │   ├── models/                  
+
 │   │   │   ├── dtos/                # DTOs
+
 │   │   │   └── entities/            # Entity classes
+
 │   │   ├── repositories/            # Data Repositories
+
 │   │   └── services/                # Service implementations
+
 │   ├── resources/
 │   │   ├── application.properties   # Configuration
+
 │   │   └── data.sql                 # Optional data script
+
 ├── test/                            # Unit and integration tests
 ## API Endpoints
 You can interact with the application through the following REST API endpoints:
