@@ -25,6 +25,7 @@ It ensures data validation, custom error handling, and a smooth API integration 
 ## Project Structure
 Pet-Adoption-and-Care-Portal
 src/
+
 ├── main/
 
 │   ├── java/it/school_project/PetAdoptionAndCarePortal
