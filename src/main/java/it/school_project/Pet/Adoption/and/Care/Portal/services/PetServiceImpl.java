@@ -60,7 +60,7 @@ public class PetServiceImpl implements PetServices {
             existingPet.setAge(petDTO.getAge() != null ? petDTO.getAge() : existingPet.getAge());
             existingPet.setBreed(petDTO.getBreed() != null ? petDTO.getBreed() : existingPet.getBreed());
             existingPet.setType(petDTO.getType() != null ? petDTO.getType() : existingPet.getType());
-            existingPet.setStatus(petDTO.getStatus() != null ? petDTO.getStatus() : existingPet.getStatus());
+          //  existingPet.setStatus(petDTO.getStatus() != null ? petDTO.getStatus() : existingPet.getStatus());
             existingPet.setCountry(petDTO.getCountry() != null ? petDTO.getCountry() : existingPet.getCountry());
             existingPet.setCity(petDTO.getCity() != null ? petDTO.getCity() : existingPet.getCity());
 

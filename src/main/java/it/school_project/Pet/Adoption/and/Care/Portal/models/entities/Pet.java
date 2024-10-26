@@ -40,9 +40,9 @@ public class Pet {
     @Column(name = "city")
     private String city;
 
-    @NotNull(message = "The status is required")
-    @Column(name = "status")
-    private String status;
+   // @NotNull(message = "The status is required")
+   // @Column(name = "status")
+   // private String status;
 
     @NotNull(message = "The health_status is required")
     @Column(name = "healthStatus")

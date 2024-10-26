@@ -1,10 +1,7 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.AdoptionDeleteException;
-import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.AdoptionNotFoundException;
-import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.OwnerNotFoundException;
-import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.PetNotFoundException;
+import it.school_project.Pet.Adoption.and.Care.Portal.exceptions.*;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.*;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Adoption;
 import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
@@ -38,10 +35,15 @@ public class AdoptionServiceImpl implements AdoptionService {
         Owner owner = ownerRepository.findById(requestAdoptionDTO.getOwnerId()).orElseThrow(() -> new OwnerNotFoundException("Owner with the id" + requestAdoptionDTO.getOwnerId() + "not found"));
         Pet pet = petRepository.findById(requestAdoptionDTO.getPetId()).orElseThrow(() -> new PetNotFoundException("Pet with the id" + requestAdoptionDTO.getPetId() + "not found"));
 
+        if (!"Completed".equalsIgnoreCase(requestAdoptionDTO.getStatus())) {
+                    throw new InvalidStatusException("Status must be 'Completed'");
+                }
+
         Adoption adoptionEntity = new Adoption();
         adoptionEntity.setOwner(owner);
         adoptionEntity.setPet(pet);
         adoptionEntity.setAdoptionDate(LocalDate.now());
+        adoptionEntity.setStatus("Completed");
 
         Adoption adoptionEntityResponse = adoptionRepository.save(adoptionEntity);
         log.info("Adoption with the id {} was saved", adoptionEntityResponse.getId());
@@ -50,12 +52,12 @@ public class AdoptionServiceImpl implements AdoptionService {
     }
 
     @Override
-    public ResponseAdoptionDTO updateAdoption(Long adoptionId, AdoptionDTO adoptionDTO) {
+    public ResponseAdoptionDTO updateAdoption(Long adoptionId, RequestAdoptionDTO requestAdoptionDTO) {
         Adoption existingAdoption = adoptionRepository.findById(adoptionId).orElseThrow(() -> new AdoptionNotFoundException("Adoption with the id" + adoptionId + "not found"));
-    //    existingAdoption.setOwner(adoptionDTO.getOwner());
-     //   existingAdoption.setPet(adoptionDTO.getPet());
-        existingAdoption.setAdoptionDate(adoptionDTO.getAdoptionDate());
-        existingAdoption.setStatus(adoptionDTO.getStatus());
+        //    existingAdoption.setOwner(adoptionDTO.getOwner());
+        //   existingAdoption.setPet(adoptionDTO.getPet());
+        existingAdoption.setAdoptionDate(LocalDate.now());
+        existingAdoption.setStatus(requestAdoptionDTO.getStatus());
         Adoption updatedAdoption = adoptionRepository.save(existingAdoption);
         return objectMapper.convertValue(updatedAdoption, ResponseAdoptionDTO.class);
     }

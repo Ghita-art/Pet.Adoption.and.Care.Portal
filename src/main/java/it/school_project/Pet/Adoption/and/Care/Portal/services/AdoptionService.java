@@ -7,7 +7,9 @@ import it.school_project.Pet.Adoption.and.Care.Portal.models.dtos.ResponseAdopti
 public interface AdoptionService {
     ResponseAdoptionDTO createAdoption(RequestAdoptionDTO requestAdoptionDTO);
 
-    ResponseAdoptionDTO updateAdoption(Long adoptionId, AdoptionDTO adoptionDTO);
+   // ResponseAdoptionDTO updateAdoption(Long adoptionId, AdoptionDTO adoptionDTO);
+
+    ResponseAdoptionDTO updateAdoption(Long adoptionId, RequestAdoptionDTO requestAdoptionDTO);
 
     AdoptionDTO getAdoptionById(Long id);
 

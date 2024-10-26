@@ -24,7 +24,7 @@ public class AdoptionController {
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateAdoptionById(@PathVariable Long id, @RequestBody AdoptionDTO adoptionDTO) {
-        ResponseAdoptionDTO updateAdoptionById = adoptionService.updateAdoption(id, adoptionDTO);
+        ResponseAdoptionDTO updateAdoptionById = adoptionService.updateAdoption(id, new RequestAdoptionDTO());
         return ResponseEntity.ok("Updated adoption");
     }
 
