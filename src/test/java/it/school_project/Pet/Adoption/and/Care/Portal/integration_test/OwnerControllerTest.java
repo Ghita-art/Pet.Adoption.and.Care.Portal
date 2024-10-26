@@ -34,9 +34,9 @@ public class OwnerControllerTest {
     @Test
     void testCreateOwnerShouldPass() throws Exception {
         RequestOwnerDTO requestOwnerDTO = new RequestOwnerDTO();
-        requestOwnerDTO.setFirstName("test firstName");
-        requestOwnerDTO.setLastName("test lastName");
-        requestOwnerDTO.setAddress("test address");
+        requestOwnerDTO.setFirstName("test");
+        requestOwnerDTO.setLastName("test ");
+        requestOwnerDTO.setAddress("test");
         requestOwnerDTO.setPhoneNumber("1254645684");
         requestOwnerDTO.setEmail("test@examplpe.com");
 

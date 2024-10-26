@@ -4,7 +4,6 @@ import it.school_project.Pet.Adoption.and.Care.Portal.models.entities.Owner;
 import org.springframework.data.jpa.domain.Specification;
 
 public class OwnerSpecification {
-    // firstName, lastName, phoneNumber, email
 
     public static Specification<Owner> firstNameContains(String firstName) {
         return (owner, query, criteriaBuilder) -> firstName == null ? null :

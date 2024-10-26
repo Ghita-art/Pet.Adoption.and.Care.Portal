@@ -34,14 +34,14 @@ public class PetControllerTest {
     @Test
     void testCreatePetShouldPass() throws Exception {
         PetDTO petDTO = new PetDTO();
+        petDTO.setId(1L);
         petDTO.setName("test name");
         petDTO.setBreed("test breed");
         petDTO.setType("test type");
-        petDTO.setGender("test gender");
+        petDTO.setGender("Male");
         petDTO.setAge(Integer.valueOf("5"));
         petDTO.setCountry("test country");
         petDTO.setCity("test city");
-        petDTO.setStatus("test status");
         petDTO.setHealthStatus("health status");
 
         mockMvc.perform(post("/api/pets")

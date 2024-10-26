@@ -37,10 +37,6 @@ public class RequestPetDTO {
     @Size(max = 50, message = "The city name must be less than 50 characters")
     private String city;
 
-   // @NotNull(message = "The status is required")
-  //  @Pattern(regexp = "Available|Adopted|Pending", message = "Invalid status")
-    private String status;
-
     @NotNull(message = "The health status is required")
     @Size(max = 100, message = "The health status must be less than 100 characters")
     private String healthStatus;

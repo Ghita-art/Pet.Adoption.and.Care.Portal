@@ -84,7 +84,6 @@ public class PetServiceImplTest {
         assertEquals(requestPetDTO.getCity(), savedPetDTO.getCity());
         assertEquals(requestPetDTO.getBreed(), savedPetDTO.getBreed());
         assertEquals(requestPetDTO.getAge(), savedPetDTO.getAge());
-        assertEquals(requestPetDTO.getStatus(), savedPetDTO.getStatus());
         assertEquals(requestPetDTO.getType(), savedPetDTO.getType());
         assertEquals(requestPetDTO.getHealthStatus(), savedPetDTO.getHealthStatus());
     }

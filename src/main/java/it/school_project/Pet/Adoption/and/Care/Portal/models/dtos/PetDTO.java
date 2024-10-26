@@ -1,6 +1,5 @@
 package it.school_project.Pet.Adoption.and.Care.Portal.models.dtos;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -37,10 +36,6 @@ public class PetDTO {
     @NotNull(message = "The city is required")
     @Size(max = 50, message = "The city name must be less than 50 characters")
     private String city;
-
-   // @NotNull(message = "The status is required")
-   // @Pattern(regexp = "Available|Adopted|Pending", message = "Invalid status")
-  //  private String status;
 
     @NotNull(message = "The health status is required")
     @Size(max = 100, message = "The health status must be less than 100 characters")
